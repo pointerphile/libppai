@@ -116,8 +116,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PPBT.cpp" />
+    <ClCompile Include="PPFSM.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PPBT.h" />
+    <ClInclude Include="PPFSM.h" />
     <ClInclude Include="ppinclude.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
