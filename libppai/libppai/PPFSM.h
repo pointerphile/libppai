@@ -2,8 +2,7 @@
 #include "ppinclude.h"
 
 namespace PP {
-	class PPFSM
-	{
+	class PPFSM {
 	public:
 		PPFSM();
 		~PPFSM();

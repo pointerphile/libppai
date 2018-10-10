@@ -2,8 +2,7 @@
 #include "ppinclude.h"
 
 namespace PP {
-	class PPBT
-	{
+	class PPBT {
 	public:
 		PPBT();
 		~PPBT();
