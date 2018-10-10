@@ -2,11 +2,11 @@
 
 
 
-libppai::PPFSM::PPFSM()
+PP::PPFSM::PPFSM()
 {
 }
 
 
-libppai::PPFSM::~PPFSM()
+PP::PPFSM::~PPFSM()
 {
 }

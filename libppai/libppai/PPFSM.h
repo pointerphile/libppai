@@ -1,7 +1,7 @@
 #pragma once
 #include "ppinclude.h"
 
-namespace libppai {
+namespace PP {
 	class PPFSM
 	{
 	public:

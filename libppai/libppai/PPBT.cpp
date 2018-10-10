@@ -2,11 +2,11 @@
 
 
 
-libppai::PPBT::PPBT()
+PP::PPBT::PPBT()
 {
 }
 
 
-libppai::PPBT::~PPBT()
+PP::PPBT::~PPBT()
 {
 }
