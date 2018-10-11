@@ -2,9 +2,11 @@
 #include "ppinclude.h"
 
 namespace PP {
-	class PPBT {
+	class Node {
 	public:
-		PPBT();
-		~PPBT();
+		Node();
+		~Node();
+	public:
+		virtual bool Run();
 	};
 }

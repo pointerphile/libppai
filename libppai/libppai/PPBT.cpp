@@ -2,11 +2,14 @@
 
 
 
-PP::PPBT::PPBT()
-{
+PP::Node::Node() {
 }
 
 
-PP::PPBT::~PPBT()
+PP::Node::~Node() {
+}
+
+bool PP::Node::Run()
 {
+	return false;
 }
