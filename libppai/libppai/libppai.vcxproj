@@ -118,11 +118,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PPBT.cpp" />
     <ClCompile Include="PPFSM.cpp" />
+    <ClCompile Include="PPTestBT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PPBT.h" />
     <ClInclude Include="PPFSM.h" />
     <ClInclude Include="ppinclude.h" />
+    <ClInclude Include="PPTestBT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
