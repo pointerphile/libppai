@@ -24,10 +24,27 @@ namespace PP {
 		virtual bool Run() override;
 	};
 
-	class PPTestBT
-	{
+	class ActionOpenDoor : public PP::Node {
+	private:
+		DoorStatus* m_pStatus;
+	public:
+		ActionOpenDoor(DoorStatus* pStatus) : m_pStatus(pStatus) {}
+		virtual bool Run() override;
+	};
+
+	class PPTestBT {
+	private:
+		PP::Sequence* m_pRoot = new Sequence;
+		PP::Sequence* m_pSequence = new Sequence;
+		PP::Selector* m_pSelector = new Selector;
+		PP::DoorStatus* m_pStatus = new DoorStatus { false, 5 };
+		PP::ActionCheckIfDoorIsOpen* m_pActionCheck = new ActionCheckIfDoorIsOpen(m_pStatus);
+		PP::ActionApproachDoor* m_pActionApproach = new ActionApproachDoor(m_pStatus, false);
+		PP::ActionOpenDoor* m_pActionOpen = new ActionOpenDoor(m_pStatus);
 	public:
 		PPTestBT();
 		~PPTestBT();
+	public:
+		bool Run();
 	};
 }

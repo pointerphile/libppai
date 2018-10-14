@@ -23,7 +23,7 @@ bool PP::Selector::Run() {
 
 bool PP::Sequence::Run() {
 	for (PP::Node* pNodeChild : GetChildren()) {
-		if (pNodeChild->Run()) {
+		if (!pNodeChild->Run()) {
 			return false;
 		}
 	}
