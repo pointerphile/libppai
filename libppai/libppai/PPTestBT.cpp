@@ -1,6 +1,14 @@
 ﻿#include "PPTestBT.h"
 
 PP::PPTestBT::PPTestBT() {
+	m_pRoot = new Sequence;
+	m_pSequence = new Sequence;
+	m_pSelector = new Selector;
+	m_pStatus = new DoorStatus{ false, 5 };
+	m_pActionCheck = new ActionCheckIfDoorIsOpen(m_pStatus);
+	m_pActionApproach = new ActionApproachDoor(m_pStatus, false);
+	m_pActionOpen = new ActionOpenDoor(m_pStatus);
+
 	m_pRoot->AddChild(m_pSelector);
 	m_pSelector->AddChild(m_pActionCheck);
 	m_pSelector->AddChild(m_pSequence);
@@ -13,7 +21,7 @@ bool PP::PPTestBT::Run() {
 	while (!m_pRoot->Run()) {
 		std::cout << std::endl;
 	}
-	std::wcout << L"에리쨩을 덮쳤다." << std::endl;
+	//std::wcout << L"미라이를 덮쳤다." << std::endl;
 	return false;
 }
 

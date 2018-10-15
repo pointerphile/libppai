@@ -34,13 +34,13 @@ namespace PP {
 
 	class PPTestBT {
 	private:
-		PP::Sequence* m_pRoot = new Sequence;
-		PP::Sequence* m_pSequence = new Sequence;
-		PP::Selector* m_pSelector = new Selector;
-		PP::DoorStatus* m_pStatus = new DoorStatus { false, 5 };
-		PP::ActionCheckIfDoorIsOpen* m_pActionCheck = new ActionCheckIfDoorIsOpen(m_pStatus);
-		PP::ActionApproachDoor* m_pActionApproach = new ActionApproachDoor(m_pStatus, false);
-		PP::ActionOpenDoor* m_pActionOpen = new ActionOpenDoor(m_pStatus);
+		PP::Sequence* m_pRoot;
+		PP::Sequence* m_pSequence;
+		PP::Selector* m_pSelector;
+		PP::DoorStatus* m_pStatus;
+		PP::ActionCheckIfDoorIsOpen* m_pActionCheck;
+		PP::ActionApproachDoor* m_pActionApproach;
+		PP::ActionOpenDoor* m_pActionOpen;
 	public:
 		PPTestBT();
 		~PPTestBT();
