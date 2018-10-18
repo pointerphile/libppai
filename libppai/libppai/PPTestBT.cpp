@@ -21,7 +21,7 @@ bool PP::PPTestBT::Run() {
 	while (!m_pRoot->Run()) {
 		std::cout << std::endl;
 	}
-	//std::wcout << L"미라이를 덮쳤다." << std::endl;
+	std::wcout << L"상황 종료." << std::endl;
 	return false;
 }
 

@@ -27,6 +27,18 @@
     <ClInclude Include="PPTestBT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PPPetBT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPFood.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +51,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PPTestBT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPPetBT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPSingleton.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPObjectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPFood.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

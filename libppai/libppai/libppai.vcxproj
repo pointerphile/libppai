@@ -117,13 +117,22 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PPBT.cpp" />
+    <ClCompile Include="PPFood.cpp" />
     <ClCompile Include="PPFSM.cpp" />
+    <ClCompile Include="PPObject.cpp" />
+    <ClCompile Include="PPObjectManager.cpp" />
+    <ClCompile Include="PPPetBT.cpp" />
+    <ClCompile Include="PPSingleton.h" />
     <ClCompile Include="PPTestBT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PPBT.h" />
+    <ClInclude Include="PPFood.h" />
     <ClInclude Include="PPFSM.h" />
     <ClInclude Include="ppinclude.h" />
+    <ClInclude Include="PPObject.h" />
+    <ClInclude Include="PPObjectManager.h" />
+    <ClInclude Include="PPPetBT.h" />
     <ClInclude Include="PPTestBT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
