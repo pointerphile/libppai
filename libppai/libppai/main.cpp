@@ -1,10 +1,11 @@
 #include "PPPetBT.h"
+#include "PPPet.h"
 #include "PPObjectManager.h"
 
 int main(int argc, char* argv[]) {
 	std::locale::global(std::locale(""));
 
-	PP::FoodStatus *pFood = new PP::FoodStatus(10, 5);
+	PP::PPObjectManager::GetInstance().m_listObject.emplace_back();
 
 	std::system("pause");
 	return 0;

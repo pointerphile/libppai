@@ -121,6 +121,7 @@
     <ClCompile Include="PPFSM.cpp" />
     <ClCompile Include="PPObject.cpp" />
     <ClCompile Include="PPObjectManager.cpp" />
+    <ClCompile Include="PPPet.cpp" />
     <ClCompile Include="PPPetBT.cpp" />
     <ClCompile Include="PPSingleton.h" />
     <ClCompile Include="PPTestBT.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="ppinclude.h" />
     <ClInclude Include="PPObject.h" />
     <ClInclude Include="PPObjectManager.h" />
+    <ClInclude Include="PPPet.h" />
     <ClInclude Include="PPPetBT.h" />
     <ClInclude Include="PPTestBT.h" />
   </ItemGroup>

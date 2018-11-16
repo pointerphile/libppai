@@ -1,4 +1,4 @@
 #include "PPObjectManager.h"
 
-PPObjectManager::PPObjectManager() {}
-PPObjectManager::~PPObjectManager() {}
+PP::PPObjectManager::PPObjectManager() {}
+PP::PPObjectManager::~PPObjectManager() {}

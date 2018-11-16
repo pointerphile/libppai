@@ -5,6 +5,6 @@ namespace PP {
 		int iPosition;
 	public:
 		PPObject();
-		~PPObject();
+		virtual ~PPObject();
 	};
 }

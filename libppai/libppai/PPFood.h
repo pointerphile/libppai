@@ -6,6 +6,6 @@ namespace PP {
 		int iQuantity;
 	public:
 		PPFood();
-		~PPFood();
+		virtual ~PPFood();
 	};
 }
