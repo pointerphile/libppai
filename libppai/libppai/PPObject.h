@@ -5,10 +5,10 @@ namespace PP {
 	enum PPObjectType { Object, Pet, Food };
 
 	class PPObject {
-	protected:
-		int m_iPosition;
 	public:
+		int m_iPosition;
 		PPObjectType m_ObjectType;
+	public:
 		PPObject();
 		virtual ~PPObject();
 	};

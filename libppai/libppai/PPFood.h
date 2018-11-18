@@ -5,7 +5,9 @@ namespace PP {
 	public:
 		int m_iQuantity;
 	public:
-		PPFood(int iPosition, int iQuantity);
+		PPFood();
 		virtual ~PPFood();
+	public:
+		void SetPPFood(int iPosition, int iQuantity);
 	};
 }

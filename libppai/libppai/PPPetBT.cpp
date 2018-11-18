@@ -1,15 +1,16 @@
 #include "PPPetBT.h"
 #include "PPObjectManager.h"
 
-PP::PPPetBT::PPPetBT() {
+PP::PPPetBT::PPPetBT(PP::PPObject *pObject) {
+	m_pPet = pObject;
 	m_pRoot = new PP::Sequence;
 	m_pSequence0 = new PP::Sequence;
 	m_pSequence1 = new PP::Sequence;
 	m_pSelector0 = new PP::Selector;
-	m_pCheckTarget = new PP::CheckTarget(this->m_pTargetFood);
-	m_pActionSearchFood = new PP::ActionSearchFood(this->m_pPet);
-	m_ActionChaseFood = new PP::ActionChaseFood(this->m_pPet, this->m_pTargetFood);
-	m_ActionEatFood = new PP::ActionEatFood(this->m_pTargetFood);
+	m_pCheckTarget = new PP::CheckTarget(&m_pTargetFood);
+	m_pActionSearchFood = new PP::ActionSearchFood(&m_pPet, &m_pTargetFood);
+	m_ActionChaseFood = new PP::ActionChaseFood(&m_pPet, &m_pTargetFood);
+	m_ActionEatFood = new PP::ActionEatFood(&m_pPet, &m_pTargetFood);
 
 	m_pRoot->AddChild(m_pSequence0);
 	m_pSequence0->AddChild(m_pSelector0);
@@ -17,23 +18,21 @@ PP::PPPetBT::PPPetBT() {
 	m_pSelector0->AddChild(m_pCheckTarget);
 	m_pSelector0->AddChild(m_pActionSearchFood);
 
+	m_pSequence1->AddChild(m_ActionChaseFood);
+	m_pSequence1->AddChild(m_ActionEatFood);
 }
 PP::PPPetBT::~PPPetBT() {}
 
-void PP::PPPetBT::SetPet(PP::PPObject *pObject) {
-	m_pPet = pObject;
-	std::cout << "BT: Standby." << std::endl;
-}
-
 bool PP::CheckTarget::Run() {
-	if (this->m_pTargetFood == nullptr) {
+	if (*m_pTargetFood == nullptr) {
 		std::cout << "BT: 타겟이 없음. false" << std::endl;
 		return false;
 	}
 	else {
-		bool isTargetValid = PP::PPObjectManager::GetInstance().CheckElement(m_pTargetFood);
+		bool isTargetValid = PP::PPObjectManager::GetInstance().CheckElement(*m_pTargetFood);
 		if (isTargetValid) {
 			std::cout << "BT: 타겟은 매니저에 존재함. true" << std::endl;
+			std::cout << "타겟의 위치 : " << (*m_pTargetFood)->m_iPosition << std::endl;
 			return isTargetValid;
 		}
 		else {
@@ -44,21 +43,66 @@ bool PP::CheckTarget::Run() {
 }
 
 bool PP::ActionSearchFood::Run() {
+	PP::PPObject* pFoodTemp = nullptr;
 	for (PP::PPObject* pObject : PP::PPObjectManager::GetInstance().m_listpObject) {
 		if (pObject->m_ObjectType == PP::PPObjectType::Food) {
-			std::cout << "FOOD!" << std::endl;
+			std::cout << "FOOD! " << abs(((PP::PPFood*)pObject)->m_iPosition - (*m_pPet)->m_iPosition) << " points far from me!" << std::endl;
+			if (pFoodTemp == nullptr) {
+				pFoodTemp = pObject;
+			}
+			else {
+				if (
+					abs(((PP::PPFood*)pFoodTemp)->m_iPosition - (*m_pPet)->m_iPosition)
+					 >= abs(((PP::PPFood*)pObject)->m_iPosition - (*m_pPet)->m_iPosition)
+				)
+				{
+					pFoodTemp = pObject;
+				}
+			}
+
+			*m_pTargetFood = (PP::PPFood*)pFoodTemp;
 		}
 	}
-
-	return false;
+	if (*m_pTargetFood == nullptr) {
+		std::cout << "타게팅 실패, 타겟은 맵 상에 없다." << std::endl;
+		return false;
+	}
+	else {
+		std::cout << "타게팅 성공, 새 타겟의 위치는 " << (*m_pTargetFood)->m_iPosition << std::endl;
+		return true;
+	}
 }
 
-bool PP::ActionChaseFood::Run()
-{
-	return false;
+bool PP::ActionChaseFood::Run() {
+	if ((*m_pPet)->m_iPosition > (*m_pTargetFood)->m_iPosition) {
+		(*m_pPet)->m_iPosition--;
+		std::cout << "-1 만큼 이동" << std::endl;
+	}
+	else if ((*m_pPet)->m_iPosition < (*m_pTargetFood)->m_iPosition) {
+		(*m_pPet)->m_iPosition++;
+		std::cout << "+1 만큼 이동" << std::endl;
+	}
+	return true;
 }
 
-bool PP::ActionEatFood::Run()
-{
-	return false;
+bool PP::ActionEatFood::Run() {
+	std::cout << "먹기실시" << std::endl;
+	if ((*m_pPet)->m_iPosition != (*m_pTargetFood)->m_iPosition) {
+		std::cout << "먹이와 위치가 일치하지 않다." << std::endl;
+		return false;
+	}
+	else if((*m_pPet)->m_iPosition == (*m_pTargetFood)->m_iPosition) {
+		if ((*m_pTargetFood)->m_iQuantity > 1) {
+			(*m_pTargetFood)->m_iQuantity--;
+			std::cout << "먹이를 1 만큼 먹었다." << std::endl;
+			return true;
+		}
+		else if ((*m_pTargetFood)->m_iQuantity == 1) {
+			(*m_pTargetFood)->m_iQuantity--;
+			std::cout << "먹이를 1 만큼 먹었다." << std::endl;
+			PP::PPObjectManager::GetInstance().erase(*m_pTargetFood);
+			*m_pTargetFood = nullptr;
+			return true;
+		}
+	}
 }

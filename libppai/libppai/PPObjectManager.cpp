@@ -4,7 +4,8 @@ PP::PPObjectManager::PPObjectManager() {}
 PP::PPObjectManager::~PPObjectManager() {}
 
 void* PP::PPObjectManager::push_back_Pet(int iPosition) {
-	PP::PPPet* pPet = new PP::PPPet(iPosition);
+	PP::PPPet* pPet = new PP::PPPet;
+	pPet->SetPPPet(iPosition);
 	m_listpObject.push_back(pPet);
 
 	return pPet;
@@ -12,8 +13,9 @@ void* PP::PPObjectManager::push_back_Pet(int iPosition) {
 
 void * PP::PPObjectManager::push_back_Food(int iPosition, int iQuantity)
 {
-	PP::PPFood* pFood = new PP::PPFood(iPosition, iQuantity);
-	m_listpObject.push_back(pFood);
+	PP::PPFood* pFood = new PP::PPFood;
+	pFood->SetPPFood(iPosition, iQuantity);
+	m_listpObject.push_back((PP::PPObject*)pFood);
 
 	return pFood;
 }

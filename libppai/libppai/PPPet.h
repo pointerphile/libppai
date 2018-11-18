@@ -5,11 +5,11 @@
 namespace PP {
 	class PPPet : public PP::PPObject {
 	public:
-		PPPetBT m_BT;
+		PPPetBT m_BT = PPPetBT(this);
 	public:
-		PPPet(int iPosition);
+		PPPet();
 		virtual ~PPPet();
 	public:
-		void SetPet();
+		void SetPPPet(int iPosition);
 	};
 }

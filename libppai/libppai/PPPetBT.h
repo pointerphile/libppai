@@ -5,42 +5,42 @@
 namespace PP {
 	class CheckTarget : public PP::Node {
 	public:
-		PP::PPFood* m_pTargetFood;
+		PP::PPFood** m_pTargetFood;
 	public:
-		CheckTarget(PP::PPFood* pFood) : m_pTargetFood(pFood) {};
+		CheckTarget(PP::PPFood** pFood) : m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
 	class ActionSearchFood : public PP::Node {
 	public:
-		PP::PPObject* m_pPet;
+		PP::PPObject** m_pPet;
+		PP::PPFood** m_pTargetFood;
 	public:
-		ActionSearchFood(PP::PPObject* pPet) : m_pPet(pPet) {};
+		ActionSearchFood(PP::PPObject** pPet, PP::PPFood** pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
 	class ActionChaseFood : public PP::Node {
 	public:
-		PP::PPObject* m_pPet;
-		PP::PPFood* m_pTargetFood;
+		PP::PPObject** m_pPet;
+		PP::PPFood** m_pTargetFood;
 	public:
-		ActionChaseFood(PP::PPObject* pPet, PP::PPFood* pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
+		ActionChaseFood(PP::PPObject** pPet, PP::PPFood** pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
 	class ActionEatFood : public PP::Node {
 	public:
-		PP::PPFood* m_pTargetFood;
+		PP::PPObject** m_pPet;
+		PP::PPFood** m_pTargetFood;
 	public:
-		ActionEatFood(PP::PPFood* pFood) : m_pTargetFood(pFood) {};
+		ActionEatFood(PP::PPObject** pPet, PP::PPFood** pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
 	class PPPetBT {
 	private:
 		PP::PPObject* m_pPet;
-		PP::PPFood* m_pTargetFood;
-		PP::Sequence* m_pRoot;
 		PP::Sequence* m_pSequence0;
 		PP::Sequence* m_pSequence1;
 		PP::Selector* m_pSelector0;
@@ -49,10 +49,11 @@ namespace PP {
 		PP::ActionChaseFood* m_ActionChaseFood;
 		PP::ActionEatFood* m_ActionEatFood;
 	public:
-		PPPetBT();
-		~PPPetBT();
+		PP::Sequence* m_pRoot;
+		PP::PPFood* m_pTargetFood;
 	public:
-		void SetPet(PP::PPObject *pObject);
+		PPPetBT(PP::PPObject *pObject);
+		~PPPetBT();
 	};
 }
 
