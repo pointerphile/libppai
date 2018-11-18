@@ -4,8 +4,8 @@
 
 int main(int argc, char* argv[]) {
 	std::locale::global(std::locale(""));
-
-	PP::PPObjectManager::GetInstance().m_listObject.emplace_back();
+	PP::PPPet* pPet = (PP::PPPet*)PP::PPObjectManager::GetInstance().push_back_Pet(1);
+	PP::PPObjectManager::GetInstance().erase(pPet);
 
 	std::system("pause");
 	return 0;

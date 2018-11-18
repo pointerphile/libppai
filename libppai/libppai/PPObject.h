@@ -1,9 +1,14 @@
 #pragma once
+#include "ppinclude.h"
+
 namespace PP {
+	enum PPObjectType { Object, Pet, Food };
+
 	class PPObject {
-	private:
-		int iPosition;
+	protected:
+		int m_iPosition;
 	public:
+		PPObjectType m_ObjectType;
 		PPObject();
 		virtual ~PPObject();
 	};

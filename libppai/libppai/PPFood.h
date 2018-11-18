@@ -3,9 +3,9 @@
 namespace PP {
 	class PPFood : public PP::PPObject {
 	public:
-		int iQuantity;
+		int m_iQuantity;
 	public:
-		PPFood();
+		PPFood(int iPosition, int iQuantity);
 		virtual ~PPFood();
 	};
 }
