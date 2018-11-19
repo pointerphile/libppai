@@ -3,20 +3,27 @@
 #include "PPFood.h"
 
 namespace PP {
+	struct BTInfo {
+		PP::PPObject** m_pPet;
+		PP::PPHandle* m_phTargetFood;
+		PP::PPFood** m_pTargetFood;
+	};
+
 	class CheckTarget : public PP::Node {
 	public:
-		PP::PPFood** m_pTargetFood;
+		PP::PPHandle* m_phTargetFood;
 	public:
-		CheckTarget(PP::PPFood** pFood) : m_pTargetFood(pFood) {};
+		CheckTarget(PP::PPHandle* phFood) : m_phTargetFood(phFood) {};
 		virtual bool Run() override;
 	};
 
 	class ActionSearchFood : public PP::Node {
 	public:
 		PP::PPObject** m_pPet;
+		PP::PPHandle* m_phTargetFood;
 		PP::PPFood** m_pTargetFood;
 	public:
-		ActionSearchFood(PP::PPObject** pPet, PP::PPFood** pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
+		ActionSearchFood(PP::PPObject** pPet, PP::PPHandle* phFood , PP::PPFood** pFood) : m_pPet(pPet), m_phTargetFood(phFood), m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
@@ -32,9 +39,10 @@ namespace PP {
 	class ActionEatFood : public PP::Node {
 	public:
 		PP::PPObject** m_pPet;
+		PP::PPHandle* m_phTargetFood;
 		PP::PPFood** m_pTargetFood;
 	public:
-		ActionEatFood(PP::PPObject** pPet, PP::PPFood** pFood) : m_pPet(pPet), m_pTargetFood(pFood) {};
+		ActionEatFood(PP::PPObject** pPet, PP::PPHandle* phFood, PP::PPFood** pFood) : m_pPet(pPet), m_phTargetFood(phFood), m_pTargetFood(pFood) {};
 		virtual bool Run() override;
 	};
 
@@ -51,6 +59,7 @@ namespace PP {
 	public:
 		PP::Sequence* m_pRoot;
 		PP::PPFood* m_pTargetFood;
+		PP::PPHandle m_hTargetFood;
 	public:
 		PPPetBT(PP::PPObject *pObject);
 		~PPPetBT();
